@@ -1,82 +1,35 @@
-# mini-backtester
+# Hi, I'm Alexey 👋
 
-A small **event-driven backtest engine** for crypto strategies, built on public Binance
-OHLCV data. It walks candles one bar at a time through a strategy, simulates fills, and
-reports performance metrics (PnL, drawdown, Sharpe, win rate).
+**Quantitative crypto trader · algorithmic trading systems · Python**
 
-This is a learning / portfolio project — a simplified, public-data version of the kind of
-backtesting infrastructure I build for live trading research.
+7+ years of live cryptocurrency trading, focused on algorithmic execution, market
+structure and AI-assisted research workflows. I design and operate a proprietary
+multi-exchange grid trading system in Python — event-driven backtesting, adaptive
+position management, real-time WebSocket data ingestion and a risk-control layer.
 
-## Why event-driven?
+### What I work with
 
-Vectorized backtests are fast but quietly leak future information. An event-driven loop
-processes one candle at a time, so the strategy only ever sees data it would have had
-live — which makes results far closer to reality.
+- **Languages & tools:** Python (asyncio, WebSocket), pandas / numpy, Git, Linux / Windows
+- **Domain:** algorithmic / grid trading, derivatives microstructure, liquidation cascades,
+  funding-rate structures, multi-timeframe market analysis
+- **Method:** hypothesis-driven backtesting, parameter-sweep optimization, walk-forward
+  robustness checks, reproducible research specifications
 
-## Install
+### Public projects
 
-```bash
-git clone https://github.com/alexey-chechikov/mini-backtester
-cd mini-backtester
-pip install -r requirements.txt
-```
+The repositories here are research and learning projects built on **public market data** —
+my production trading system is private. They demonstrate the same building blocks:
+backtesting, market-data collection and quantitative analysis.
 
-## Quick start
+- 📊 **mini-backtester** — event-driven backtest engine on public OHLCV data
+- 🔌 **ws-data-collector** — real-time exchange WebSocket trade/liquidation collector
+- 📈 **funding-rate-analysis** — exploratory notebook on perpetual funding-rate behavior
 
-```bash
-# 1. Download public historical candles from Binance
-python -m mini_backtester.data --symbol BTCUSDT --interval 1h --days 365
+### Background
 
-# 2. Run a backtest with the built-in SMA-crossover strategy
-python -m mini_backtester.run --symbol BTCUSDT --interval 1h --fast 20 --slow 50
-```
+Competitive trading background — top-2 regional team finishes at Bybit's World Series
+of Trading (2020–2021). Earlier: proprietary equities trader.
 
-Example output:
+---
 
-```
-=== Backtest report: BTCUSDT 1h ===
-Period:        2024-05-01 -> 2025-05-01  (8760 bars)
-Strategy:      SMA crossover (fast=20, slow=50)
-Trades:        48
-Win rate:      41.7%
-Total return:  +12.3%
-Max drawdown:  -8.6%
-Sharpe (ann.): 1.04
-```
-
-## Project layout
-
-```
-mini_backtester/
-  data.py        # download & cache public Binance OHLCV
-  engine.py      # event-driven backtest loop + fill simulation
-  strategy.py    # Strategy base class + SMA-crossover example
-  metrics.py     # PnL, drawdown, Sharpe, win rate
-  run.py         # CLI entry point
-```
-
-## Writing your own strategy
-
-Subclass `Strategy` and implement `on_bar`:
-
-```python
-from mini_backtester.strategy import Strategy
-
-class MyStrategy(Strategy):
-    def on_bar(self, bar, position):
-        if some_condition(bar):
-            return "BUY"
-        if other_condition(bar):
-            return "SELL"
-        return None  # hold
-```
-
-## Notes & limitations
-
-- Single asset, long/flat only — kept intentionally simple.
-- Fills are simulated at the next bar's open with a configurable fee.
-- Not financial advice; for research and educational use.
-
-## License
-
-MIT
+📫 **Contact:** linkedin.com/in/alexey-chechikov
